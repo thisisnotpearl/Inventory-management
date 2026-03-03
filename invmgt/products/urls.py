@@ -1,13 +1,15 @@
 from django.urls import path, include
-from .views import ProductViewSet
+from . import views
 from rest_framework import routers
 
 #Creating a router
 
-router = routers.DefaultRouter()
+# router = routers.DefaultRouter()
 # Now we will register our product view set in this router so our view set is accessible by it with the urls
-router.register(r'products', ProductViewSet)
+# router.register(r'products', ProductViewSet)
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path('', views.get_product, name="get_products"),
+    path('create/', views.post_product, name="post_products"),
+    path('<int:pk>/', views.get_productid, name ="get_productid")
 ]
